@@ -1,0 +1,5 @@
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject\bin\Debug\DBObject.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject\bin\Debug\DBObject.pdb
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject\obj\Debug\ResolveAssemblyReference.cache
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject\obj\Debug\DBObject.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject\obj\Debug\DBObject.pdb
