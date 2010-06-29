@@ -1,9 +1,0 @@
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\bin\Debug\DBObject2.dll
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\bin\Debug\DBObject2.pdb
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\bin\Debug\DBObject.dll
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\bin\Debug\nunit.framework.dll
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\bin\Debug\DBObject.pdb
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\bin\Debug\nunit.framework.xml
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\obj\Debug\ResolveAssemblyReference.cache
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\obj\Debug\DBObject2.dll
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\obj\Debug\DBObject2.pdb

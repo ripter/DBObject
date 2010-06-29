@@ -1,9 +1,0 @@
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\DBObject 2 A\DBObject 2 A\obj\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\DBObject 2 A\DBObject 2 A\bin\Debug\DBObject 2 A.exe
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\DBObject 2 A\DBObject 2 A\bin\Debug\DBObject 2 A.pdb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\DBObject 2 A\DBObject 2 A\obj\Debug\DBObject 2 A.exe
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\DBObject 2 A\DBObject 2 A\obj\Debug\DBObject 2 A.pdb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\DBObject 2 A\DBObject 2 A\bin\Debug\KVCObject.dll
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\DBObject 2 A\DBObject 2 A\bin\Debug\KVCObject.pdb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\DBObject 2 A\DBObject 2 A\bin\Debug\KVCObject.xml
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\DBObject 2 A\DBObject 2 A\bin\Debug\MySql.Data.dll

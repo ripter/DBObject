@@ -1,7 +1,0 @@
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Console\obj\x86\Debug\ResolveAssemblyReference.cache
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Console\bin\Debug\Console.exe
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Console\bin\Debug\Console.pdb
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Console\bin\Debug\DBObject.dll
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Console\bin\Debug\DBObject.pdb
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Console\obj\x86\Debug\Console.exe
-c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Console\obj\x86\Debug\Console.pdb
