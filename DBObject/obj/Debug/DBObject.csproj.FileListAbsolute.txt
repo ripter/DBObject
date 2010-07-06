@@ -3,3 +3,9 @@ c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObjec
 c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject\obj\Debug\ResolveAssemblyReference.cache
 c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject\obj\Debug\DBObject.dll
 c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject\obj\Debug\DBObject.pdb
+C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject\bin\Debug\DBObject.dll
+C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject\bin\Debug\DBObject.pdb
+C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject\bin\Debug\MySql.Data.dll
+C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject\obj\Debug\DBObject.dll
+C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject\obj\Debug\DBObject.pdb

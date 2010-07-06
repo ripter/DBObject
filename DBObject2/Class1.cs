@@ -223,7 +223,6 @@ namespace TestDBObject2
             obj.Update();
         }
 
-
         [Test]
         public void InsertRecord()
         {
@@ -250,6 +249,49 @@ namespace TestDBObject2
             //Verify that it's gone
             obj.Where("email=@0", "ladygaga@pophit.com");
             Assert.AreEqual(0, obj.Rows.Count);
+        }
+
+        [Test]
+        public void FindIndex()
+        {
+            DBObject db = new DBObject(connMy, "users", "id");
+            //Add just the data we want
+            DBRow row = new DBRow();
+            row["email"] = "chris@ifntech.com";
+
+            //Now find the id
+            row.FindIndex(db);
+
+            Assert.AreEqual(1313, row[db.PrimaryKey]);
+        }
+
+        [Test]
+        public void FindIndexTwoColumns()
+        {
+            DBObject db = new DBObject(connMy, "users", "id");
+            //Add just the data we want
+            DBRow row = new DBRow();
+            row["email"] = "chris@ifntech.com";
+            row["first_name"] = "Chris";
+
+            //Now find the id
+            row.FindIndex(db);
+
+            Assert.AreEqual(1313, row[db.PrimaryKey]);
+        }
+
+        [Test]
+        public void FillFromIndex()
+        {
+            DBObject db = new DBObject(connMy, "users", "id");
+            //Add just the data we want
+            DBRow row = new DBRow();
+            row["id"] = 1313;
+
+            //Fill from the ID
+            row.FillFromIndex(db);
+
+            Assert.AreEqual("chris@ifntech.com", row["email"]);
         }
     }
 

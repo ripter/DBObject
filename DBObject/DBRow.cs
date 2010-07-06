@@ -172,6 +172,9 @@ namespace DBObject2
                 //Always close the Connection
                 conn.Close();
             }
+
+            //Now get the ID
+            this.FindIndex(db);
         }
         /// <summary>
         /// Deletes the Row from the Database
@@ -197,6 +200,105 @@ namespace DBObject2
             catch (Exception ex)
             {
                 DBObject.OnError("DELETE( " + cmd.CommandText + ")", ex);
+            }
+            finally
+            {
+                //Always close the Connection
+                conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// Finds the index for this record based on the columns that are not null.
+        /// </summary>
+        /// <param name="db">The DBObject for this row</param>
+        public void FindIndex(DBObject db)
+        {
+            //Make sure we don't already know the Primary Key
+            if (null != this[db.PrimaryKey]) { return; }
+
+            //Create the MySqlCommand
+            MySqlCommand cmd = new MySqlCommand("SELECT " + db.PrimaryKey + " FROM " + db.TableName + " WHERE " );
+            for (int i = 0; i < db.Columns.Count; i++)
+            {
+                if (null != this[db.Columns[i]] && db.PrimaryKey != db.Columns[i])
+                {
+                    //Add the Column
+                    cmd.CommandText += " " + db.Columns[i] + "=@" + i;
+                    cmd.Parameters.AddWithValue("@" + i, this[db.Columns[i]]);
+                    //Don't know how many we have, so always add an AND.
+                    cmd.CommandText += " AND ";
+                }
+            }
+            //Rmove the last AND
+            cmd.CommandText = cmd.CommandText.Remove(cmd.CommandText.Length - 5, 5);
+            cmd.CommandText += " LIMIT 1;";
+
+            //Open the connection and run it
+            MySqlConnection conn = new MySqlConnection(db.ConnectionString);
+            try
+            {
+                //Tell the query to use this connecton
+                cmd.Connection = conn;
+
+                //Open the Connection
+                conn.Open();
+
+                //Get the ID
+                this[db.PrimaryKey] = cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                DBObject.OnError("FindIndex( " + cmd.CommandText + ")", ex);
+            }
+            finally
+            {
+                //Always close the Connection
+                conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// Fills in the Row by its ID
+        /// </summary>
+        /// <param name="db">The DBObject for this row</param>
+        public void FillFromIndex(DBObject db)
+        {
+            //Make sure we know the Primary Key
+            if (null == this[db.PrimaryKey]) { throw new NoPrimaryKeyException(); }
+
+            //Create the MySqlCommand
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM " + db.TableName + " WHERE " + db.PrimaryKey + "=@0");
+            cmd.Parameters.AddWithValue("@0", this[db.PrimaryKey]);
+
+            //Open the connection and run it
+            MySqlConnection conn = new MySqlConnection(db.ConnectionString);
+            try
+            {
+                //Tell the query to use this connecton
+                cmd.Connection = conn;
+
+                //Open the Connection
+                conn.Open();
+
+                //Get the Row
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    for (int i = 0; i < db.Columns.Count; i++)
+                    {
+                        string column = db.Columns[i];
+                        if (db.PrimaryKey != column)
+                        {
+                            this[column] = reader[column];
+                        }
+                    }
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                DBObject.OnError("FindIndex( " + cmd.CommandText + ")", ex);
             }
             finally
             {

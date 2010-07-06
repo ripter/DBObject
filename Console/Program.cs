@@ -34,8 +34,8 @@ namespace Console
 
             //Make sure the row doesn't exist already.
             DBObject obj = new DBObject(connMy, "users", "id");
-            obj.Where("email=@0", "ladygaga@pophit.com");
-            System.Console.WriteLine(obj.Rows.Count);
+            //obj.Where("email=@0", "ladygaga@pophit.com");
+            //System.Console.WriteLine(obj.Rows.Count);
 
             //Create a new Row
             DBRow ladygaga = new DBRow();
