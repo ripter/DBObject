@@ -79,17 +79,19 @@ namespace DBObject2
                 MySqlCommand cmd = new MySqlCommand("UPDATE " + db.TableName + " SET ");
                 for (int i = 0; i < db.Columns.Count; i++)
                 {
-                    //Update everythign but the primary key.
-                    if (db.Columns[i] != db.PrimaryKey)
+                    //Update everything but the primary key, make sure it's a column we know about.
+                    if (db.Columns[i] != db.PrimaryKey && _data.ContainsKey(db.Columns[i]))
                     {
                         //Set the command text
                         cmd.CommandText += " " + db.Columns[i] + " = @" + i;
                         //Set the Value
                         cmd.Parameters.AddWithValue("@" + i, _data[db.Columns[i]]);
                         //Add a comma
-                        if (i != db.Columns.Count - 1) { cmd.CommandText += ","; }
+                        cmd.CommandText += ",";
                     }
                 }
+                //Remove the last commna
+                cmd.CommandText = cmd.CommandText.Remove(cmd.CommandText.Length - 1, 1);
 
                 //Set the VERY importent Where
                 cmd.CommandText += " WHERE " + db.PrimaryKey + " = @" + db.Columns.Count;
@@ -290,7 +292,15 @@ namespace DBObject2
                         string column = db.Columns[i];
                         if (db.PrimaryKey != column)
                         {
-                            this[column] = reader[column];
+                            //We want to convert DBNulls to just normal null
+                            if (reader[i].GetType() == typeof(DBNull))
+                            {
+                                this[column] = null;
+                            }
+                            else
+                            {
+                                this[column] = reader[column];
+                            }
                         }
                     }
                 }

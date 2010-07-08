@@ -32,24 +32,24 @@ namespace Console
             }
             */
 
-            //Make sure the row doesn't exist already.
             DBObject obj = new DBObject(connMy, "users", "id");
-            //obj.Where("email=@0", "ladygaga@pophit.com");
-            //System.Console.WriteLine(obj.Rows.Count);
+            obj.Where("id=@0", 1313);
+            obj.Columns.Add("badcolumn");   //Add a column that won't exist in the row
+            //Verify we got the value we expected
+            System.Console.WriteLine(obj.Rows[0]["middle_initial"]);
 
-            //Create a new Row
-            DBRow ladygaga = new DBRow();
-            ladygaga["first_name"] = "Lady";
-            ladygaga["last_name"] = "Gaga";
-            ladygaga["email"] = "ladygaga@pophit.com";
+            //Now Change the value
+            obj.Rows[0]["middle_initial"] = "Z";
+            obj.Update();
 
-            //Insert the Row
-            ladygaga.Insert(obj);
+            //Get it fresh from the DB.
+            obj.Where("id=@0", 1313);
+            //Verify we got the value we expected
+            System.Console.WriteLine(obj.Rows[0]["middle_initial"]);
 
-
-            //Try to get it now
-            obj.Where("email=@0", "ladygaga@pophit.com");
-            System.Console.WriteLine(obj.Rows.Count);
+            //Now Change it back
+            obj.Rows[0]["middle_inital"] = "A";
+            obj.Update();
 
             System.Console.ReadKey();
         }
