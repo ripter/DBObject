@@ -177,6 +177,9 @@ namespace DBObject2
 
             //Now get the ID
             this.FindIndex(db);
+
+            //Add ourselves to the DBObject.Rows
+            db.Rows.Add(this);
         }
         /// <summary>
         /// Deletes the Row from the Database
@@ -234,6 +237,7 @@ namespace DBObject2
             }
             //Rmove the last AND
             cmd.CommandText = cmd.CommandText.Remove(cmd.CommandText.Length - 5, 5);
+            cmd.CommandText += " ORDER BY " + db.PrimaryKey + " DESC";
             cmd.CommandText += " LIMIT 1;";
 
             //Open the connection and run it

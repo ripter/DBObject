@@ -8,7 +8,7 @@ namespace Console
 {
     class Program
     {
-        static public string connMy = "Server=66.249.242.34;User Id=web;Password=mzksie74;Persist Security Info=True;Database=nunit";
+        static public string connMy = "Server=192.168.1.1;User Id=user;Password=pasword;Persist Security Info=True;Database=nunit";
 
         static void Main(string[] args)
         {
@@ -39,17 +39,22 @@ namespace Console
             System.Console.WriteLine(obj.Rows[0]["middle_initial"]);
 
             //Now Change the value
-            obj.Rows[0]["middle_initial"] = "Z";
+            obj.Rows[0]["middle_initial"] = "Q";
             obj.Update();
 
             //Get it fresh from the DB.
             obj.Where("id=@0", 1313);
             //Verify we got the value we expected
-            System.Console.WriteLine(obj.Rows[0]["middle_initial"]);
+            System.Console.WriteLine(obj.Rows[0]["middle_initial"] + " Verify Value Change");
 
             //Now Change it back
-            obj.Rows[0]["middle_inital"] = "A";
+            obj.Rows[0]["middle_initial"] = "A";
             obj.Update();
+
+            //Verify it reset
+            obj.Where("id=@0", 1313);
+            System.Console.WriteLine(obj.Rows[0]["middle_initial"]);
+
 
             System.Console.ReadKey();
         }

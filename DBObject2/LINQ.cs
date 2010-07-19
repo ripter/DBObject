@@ -8,7 +8,7 @@ namespace DBObject2
 {
     class LINQ
     {
-        static public string connMy = "Server=66.249.242.34;User Id=web;Password=mzksie74;Persist Security Info=True;Database=nunit";
+        static public string connMy = "Server=192.168.1.1;User Id=user;Password=pasword;Persist Security Info=True;Database=nunit";
 
         public void TestLinq()
         {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1028]C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject2\bin\Debug\DBObject2.dll</TopNode>
-  <SelectedNode>[0-1028]C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject2\bin\Debug\DBObject2.dll</SelectedNode>
+  <TopNode>[0-1029]C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject2\bin\Debug\DBObject2.dll</TopNode>
+  <SelectedNode>[0-1029]C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject2\bin\Debug\DBObject2.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1028]C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject2\bin\Debug\DBObject2.dll" Expanded="true" />
-    <Node UniqueName="[0-1029]TestDBObject2" Expanded="true" />
+    <Node UniqueName="[0-1029]C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\DBObject2\bin\Debug\DBObject2.dll" Expanded="true" />
+    <Node UniqueName="[0-1030]TestDBObject2" Expanded="true" />
     <Node UniqueName="[0-1015]TestDBObject2.TestAutoMethods" Expanded="true" />
     <Node UniqueName="[0-1020]TestDBObject2.TestAutoQueries" Expanded="true" />
     <Node UniqueName="[0-1000]TestDBObject2.TestBasicQuery" Expanded="true" />

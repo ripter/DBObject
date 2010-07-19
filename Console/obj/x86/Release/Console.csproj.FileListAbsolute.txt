@@ -13,3 +13,5 @@ C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObjec
 C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\Console\bin\Release\MySql.Data.dll
 C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\Console\bin\Release\DBObject.pdb
 C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2_OldMySql\Console\obj\x86\Release\ResolveAssemblyReference.cache
+Z:\Developer\myGit\DBObject\Console\obj\x86\Release\Console.exe
+Z:\Developer\myGit\DBObject\Console\obj\x86\Release\Console.pdb
