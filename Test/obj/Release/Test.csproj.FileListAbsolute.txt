@@ -1,0 +1,20 @@
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\bin\Release\Test.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\bin\Release\Test.pdb
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\bin\Release\DBObject2.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\bin\Release\nunit.framework.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\bin\Release\MySql.Data.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\bin\Release\DBObject2.pdb
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\bin\Release\nunit.framework.xml
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\obj\Release\ResolveAssemblyReference.cache
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\obj\Release\Test.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\Test\obj\Release\Test.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Release\Test.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Release\Test.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Release\DBObject2.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Release\MySql.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Release\DBObject2.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Release\nunit.framework.xml
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\obj\Release\Test.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\obj\Release\Test.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Release\nunit.framework.dll

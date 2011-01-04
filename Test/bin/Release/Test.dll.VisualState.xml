@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1029]C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Release\Test.dll</TopNode>
+  <SelectedNode>[0-1016]TestDBObject2.TestAutoMethods.GetColumnNames</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1029]C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Release\Test.dll" Expanded="true" />
+    <Node UniqueName="[0-1030]TestDBObject2" Expanded="true" />
+    <Node UniqueName="[0-1015]TestDBObject2.TestAutoMethods" Expanded="true" />
+    <Node UniqueName="[0-1020]TestDBObject2.TestAutoQueries" Expanded="true" />
+    <Node UniqueName="[0-1000]TestDBObject2.TestBasicQuery" Expanded="true" />
+  </Nodes>
+</VisualState>

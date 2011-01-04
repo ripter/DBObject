@@ -1,1 +1,18 @@
-C:\Documents and Settings\Administrator\Local Settings\Application Data\Temporary Projects\DBObject2\obj\Release\ResolveAssemblyReference.cache
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\bin\Release\DBObject2.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\bin\Release\DBObject2.pdb
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\bin\Release\MySql.Data.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\obj\Release\ResolveAssemblyReference.cache
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\obj\Release\DBObject2.dll
+c:\documents and settings\owner\my documents\visual studio 2010\Projects\DBObject2\DBObject2\obj\Release\DBObject2.pdb
+C:\Documents and Settings\Owner\My Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Release\System.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Release\DBObject2.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Release\DBObject2.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Release\MySql.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Release\System.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\obj\Release\DBObject2.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\obj\Release\DBObject2.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Debug\DBObject2.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Debug\DBObject2.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Debug\System.Data.dll

@@ -1,0 +1,7 @@
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Debug\DBObject2.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Debug\DBObject2.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Debug\System.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\obj\Debug\DBObject2.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\obj\Debug\DBObject2.pdb
