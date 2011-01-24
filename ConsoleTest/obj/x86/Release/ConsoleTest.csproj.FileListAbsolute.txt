@@ -1,0 +1,8 @@
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\ConsoleTest\bin\Release\ConsoleTest.exe
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\ConsoleTest\bin\Release\ConsoleTest.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\ConsoleTest\bin\Release\DBObject2.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\ConsoleTest\bin\Release\MySql.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\ConsoleTest\bin\Release\DBObject2.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\ConsoleTest\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\ConsoleTest\obj\x86\Release\ConsoleTest.exe
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\ConsoleTest\obj\x86\Release\ConsoleTest.pdb

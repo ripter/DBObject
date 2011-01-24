@@ -1,0 +1,21 @@
+# Release Build
+
+# Output Target
+/t:library
+
+# Include all the References
+/reference:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\WorkProjects\App Code\App Code\MySql.Data.dll"
+/reference:C:\windows\Microsoft.NET\Framework\v2.0.50727\System.Data.dll 
+/reference:C:\windows\Microsoft.NET\Framework\v2.0.50727\System.dll 
+
+
+# Flags
+/debug-
+/checked+
+/optimize+
+
+# Output Name
+/out:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\bin\Release\DBObject2.dll"
+
+# Location of the C# files
+/recurse:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\DBObject2\*.cs"

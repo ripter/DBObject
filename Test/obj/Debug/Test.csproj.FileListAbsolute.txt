@@ -1,1 +1,10 @@
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Debug\Test.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Debug\Test.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Debug\DBObject2.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Debug\nunit.framework.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Debug\DBObject2.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\bin\Debug\nunit.framework.xml
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\obj\Debug\Test.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\DBObject2\Test\obj\Debug\Test.pdb

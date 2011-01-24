@@ -9,11 +9,17 @@ namespace DBObject2
     /// </summary>
     public class DBRow
     {
-        //Holds all of the data in the row.
+        /// <summary>
+        /// Holds all of the data in the row.
+        /// </summary>
         protected Dictionary<string, object> _data;
-        //True if the Row is dirty.
+        /// <summary>
+        /// True if the Row is dirty.
+        /// </summary>
         protected bool _dirty;
-        //Number of times we will retry a command.
+        /// <summary>
+        /// Number of times we will retry a command.
+        /// </summary>
         protected int retry = 3;
 
         /// <summary>
@@ -99,6 +105,9 @@ namespace DBObject2
         /// <param name="attempts">The number of times to keep trying this method incase of error.</param>
         protected void Update(DBObject db, int attempts)
         {
+            //Make sure we have a valid primary key
+            if (null == _data[db.PrimaryKey]) { throw new NoPrimaryKeyException(); }
+
             if (_dirty)
             {
                 //Create the MySqlCommand
@@ -276,6 +285,7 @@ namespace DBObject2
 
         /// <summary>
         /// Finds the index for this record based on the columns that are not null.
+        /// This will ignore the current Primary Key column, overwriting it's value.
         /// </summary>
         /// <param name="db">The DBObject for this row</param>
         public bool FindIndex(DBObject db)
@@ -284,6 +294,7 @@ namespace DBObject2
         }
         /// <summary>
         /// Finds the index from only the columns specified.
+        /// This will ignore the current Primary Key column, overwriting it's value.
         /// </summary>
         /// <param name="db">The DBObject for this row</param>
         /// <param name="columns">The columns that must match for it to be considered.</param>
@@ -298,8 +309,6 @@ namespace DBObject2
         /// <param name="attempts">The number of times to keep trying this method incase of error.</param>
         protected bool FindIndex(DBObject db, int attempts)
         {
-            //Make sure we don't already know the Primary Key
-            if (null != this[db.PrimaryKey]) { return false; }
             bool worked = false;
 
             //Create the MySqlCommand
@@ -366,14 +375,13 @@ namespace DBObject2
         }
         /// <summary>
         /// Finds the index from only the columns specified.
+        /// This will ignore the current Primary Key column, overwriting it's value.
         /// </summary>
         /// <param name="db">The DBObject for this row</param>
         /// <param name="columns">The columns that must match for it to be considered.</param>
-        /// <param name="attemps">The number of times to keep trying this method incase of error.</param>
+        /// <param name="attempts">The number of times to keep trying this method incase of error.</param>
         protected bool FindIndex(DBObject db, string[] columns, int attempts)
         {
-            //Make sure we don't already know the Primary Key
-            if (null != this[db.PrimaryKey]) { return false; }
             bool worked = false;
 
             //Create the MySqlCommand
@@ -447,10 +455,21 @@ namespace DBObject2
         }
 
         /// <summary>
-        /// Fills in the Row by its ID
+        /// Fills the row from the database using the Primary Key.
+        /// Any existing values in the row will be overwritten.
+        /// </summary>
+        /// <param name="db">The DBObject to use.</param>
+        public void FillFromIndex(DBObject db)
+        {
+            this.FillFromIndex(db, false);
+        }
+        /// <summary>
+        /// Fills the row from the database using the Primary Key.
+        /// You can set if the existing columns should be overwritten or not with onlyNullColumns.
         /// </summary>
         /// <param name="db">The DBObject for this row</param>
-        public void FillFromIndex(DBObject db)
+        /// <param name="onlyNullColumns">If True, it will only update the columns that are currently null, keeping any existing data. If False it will replace any existing values.</param>
+        public void FillFromIndex(DBObject db, bool onlyNullColumns)
         {
             //Make sure we know the Primary Key
             if (null == this[db.PrimaryKey]) { throw new NoPrimaryKeyException(); }
@@ -475,17 +494,21 @@ namespace DBObject2
                 {
                     for (int i = 0; i < db.Columns.Count; i++)
                     {
-                        string column = db.Columns[i];
-                        if (db.PrimaryKey != column)
+                        if ((onlyNullColumns && this[db.Columns[i]] == null)
+                            || !onlyNullColumns)
                         {
-                            //We want to convert DBNulls to just normal null
-                            if (reader[i].GetType() == typeof(DBNull))
+                            string column = db.Columns[i];
+                            if (db.PrimaryKey != column)
                             {
-                                this[column] = null;
-                            }
-                            else
-                            {
-                                this[column] = reader[column];
+                                //We want to convert DBNulls to just normal null
+                                if (reader[i].GetType() == typeof(DBNull))
+                                {
+                                    this[column] = null;
+                                }
+                                else
+                                {
+                                    this[column] = reader[column];
+                                }
                             }
                         }
                     }
@@ -503,6 +526,20 @@ namespace DBObject2
             }
         }
 
-        
+        /// <summary>
+        /// Creates a shallow clone of the DBRow.
+        /// </summary>
+        /// <returns></returns>
+        public DBRow Clone()
+        {
+            Dictionary<string, object> cloned_data = new Dictionary<string, object>();
+
+            foreach (string key in _data.Keys)
+            {
+                cloned_data.Add(key, _data[key]);
+            }
+
+            return new DBRow(cloned_data);
+        }
     }
 }

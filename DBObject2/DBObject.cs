@@ -12,7 +12,6 @@ namespace DBObject2
         private string _connection_string;
         private int _total_rows;
         private List<string> _columns;
-        private List<string> _unique_columns;
         private string _table_name;
         private string _primary_key;
         private List<DBRow> _rows;
@@ -124,8 +123,9 @@ namespace DBObject2
         /// <summary>
         /// Creates an Empty DBObject with a connection string and table
         /// </summary>
-        /// <param name="connection_string"></param>
-        /// <param name="table_name"></param>
+        /// <param name="connection_string">Connection string of the database.</param>
+        /// <param name="table_name">Name of the table for Where queries.</param>
+        /// <param name="primary_key">Primary Key for the table.</param>
         public DBObject(string connection_string, string table_name, string primary_key)
             : this()
         {
@@ -239,15 +239,60 @@ namespace DBObject2
         /// Gets just the rows that meet the MySQL where caluse.
         /// After this method, the Rows property will only contain Rows that match the where caluse.
         /// </summary>
-        /// <param name="where_caluse">Examle: "first_name=@0 AND last_name=@1"</param>
-        /// <param name="query_parameter"></param>
-        public void Where(string where_caluse, params object[] query_parameters)
+        /// <param name="where_clause">Examle: "first_name=@0 AND last_name=@1"</param>
+        /// <param name="query_parameters">Object list to match the where clause</param>
+        public void Where(string where_clause, params object[] query_parameters)
         {
-            string query = "SELECT * FROM " + this.TableName + " WHERE " + where_caluse;
+            string query = "SELECT * FROM " + this.TableName + " WHERE " + where_clause;
             //Clear out any Rows that might already exist
             this.Rows.Clear();
             //Now get all of the new rows
             this.FillFromSelect(query, query_parameters);
+        }
+
+        /// <summary>
+        /// Finds all the rows based on the non null columns in the row.
+        /// After this method, the Rows property will only contain Rows that match the where caluse.
+        /// </summary>
+        /// <param name="row">Example: row["active"] = true will return all records where active is true.</param>
+        public void Where(DBRow row)
+        {
+            //Build a where query from the non null columns.
+            List<Object> query_praramters = new List<object>();
+            System.Text.StringBuilder where = new System.Text.StringBuilder();
+
+            //Build the where clause
+            int index = 0;
+            foreach (string key in row.Keys)
+            {
+                if (null != row[key])
+                {
+                    //key=@index
+                    where.Append(key);
+
+                    //Check the type, strings should use LIKE
+                    if (row[key].GetType() == typeof(String)) {
+                        where.Append(" LIKE @");
+                    } else {
+                        where.Append("=@");
+                    }
+
+                    where.Append(index);
+                    where.Append(" AND ");
+
+                    //Add the value
+                    query_praramters.Add(row[key]);
+
+                    index++;
+                }
+            }
+            //Remove the last AND
+            where.Remove(where.Length - 5, 5);
+
+            //Clear any rows
+            this.Rows.Clear();
+            //Now get all the new rows
+            this.FillFromSelect("SELECT * FROM " + this.TableName + " WHERE " + where.ToString(), query_praramters.ToArray());
         }
 
         /// <summary>

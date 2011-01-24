@@ -9,7 +9,7 @@ namespace TestDBObject2
 {
     public class Utility
     {
-        static public string connMy = "Server=192.168.1.1;User Id=web;Password=web;Persist Security Info=True;Database=nunit";
+        static public string connMy = "Server=192.168.1.1;User Id=user;Password=password;Persist Security Info=True;Database=nunit";
     }
 
     [TestFixture]
@@ -431,6 +431,29 @@ namespace TestDBObject2
             Assert.AreEqual("A", obj.Rows[0]["middle_initial"], "Verify Test Value Reset");
         }
 
+        /// <summary>
+        /// Updating without a primary key should fail.
+        /// </summary>
+        [Test]
+        public void UpdateWithoutPrimaryKeyShouldFail()
+        {
+            DBObject obj = new DBObject(Utility.connMy, "users", "id");
+            obj.Where("id=@0", 1313);
+            //Verify we got the value we expected
+            Assert.AreEqual("A", obj.Rows[0]["middle_initial"], "Verifying Default Test Value");
+
+            //Remove the primary key
+            obj.Rows[0][obj.PrimaryKey] = null;
+            //Now Change the value
+            obj.Rows[0]["middle_initial"] = "Z";
+            Assert.Throws<NoPrimaryKeyException>(delegate { obj.Update(); });
+            
+
+            //Make sure it didn't update the value.
+            obj.Where("id=@0", 1313);
+            Assert.AreEqual("A", obj.Rows[0]["middle_initial"]);
+        }
+
         [Test]
         public void InsertRecord()
         {
@@ -499,52 +522,11 @@ namespace TestDBObject2
             //--
         }
 
-        [Test]
-        public void FindIndex()
-        {
-            DBObject db = new DBObject(Utility.connMy, "users", "id");
-            //Add just the data we want
-            DBRow row = new DBRow();
-            row["email"] = "chris@ifntech.com";
-
-            //Now find the id
-            row.FindIndex(db);
-
-            Assert.AreEqual(1313, row[db.PrimaryKey]);
-        }
-
-        [Test]
-        public void FindIndexTwoColumns()
-        {
-            DBObject db = new DBObject(Utility.connMy, "users", "id");
-            //Add just the data we want
-            DBRow row = new DBRow();
-            row["email"] = "chris@ifntech.com";
-            row["first_name"] = "Chris";
-
-            //Now find the id
-            row.FindIndex(db);
-
-            Assert.AreEqual(1313, row[db.PrimaryKey]);
-        }
-
-        [Test]
-        public void FillFromIndex()
-        {
-            DBObject db = new DBObject(Utility.connMy, "users", "id");
-            //Add just the data we want
-            DBRow row = new DBRow();
-            row["id"] = 1313;
-
-            //Fill from the ID
-            row.FillFromIndex(db);
-
-            Assert.AreEqual("chris@ifntech.com", row["email"]);
-        }
+        
     }
 
     [TestFixture]
-    public class TestFindingIndex
+    public class TestIndex
     {
         [SetUp]
         public void Setup()
@@ -615,7 +597,6 @@ namespace TestDBObject2
             //Check that it really did get the index.
             Assert.AreEqual(1313, row["id"]);
         }
-
         /// <summary>
         /// Test that finding by index returns true when we specify the colummns to use
         /// </summary>
@@ -633,7 +614,21 @@ namespace TestDBObject2
             //Check that it really did get the index.
             Assert.AreEqual(1313, row["id"]);
         }
+        [Test]
+        public void FindIndexWithColumnsReturnsTrueWithBadPrimaryKey()
+        {
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+            DBRow row = new DBRow();
+            //Set the columns we want to find
+            row["id"] = 0;  //This bad primary key should be ignored.
+            row["first_name"] = "Bob";  //It will still work because we are not checking this column
+            row["last_name"] = "Richards";
 
+            //Check that it reports success in finding the index
+            Assert.IsTrue(row.FindIndex(db, new string[] { "last_name" }));
+            //Check that it really did get the index.
+            Assert.AreEqual(1313, row["id"]);
+        }
         /// <summary>
         /// A failed find should return false.
         /// </summary>
@@ -651,7 +646,6 @@ namespace TestDBObject2
             //Check that it really did not get the index.
             Assert.IsNull(row["id"]);
         }
-
         /// <summary>
         /// Test that finding by index returns true when we specify the colummns to use
         /// </summary>
@@ -668,6 +662,297 @@ namespace TestDBObject2
             Assert.IsFalse(row.FindIndex(db, new string[] { "first_name" }));
             //Check that it really did not get the index.
             Assert.IsNull(row["id"]);
+        }
+
+        /// <summary>
+        /// Test if it can find the index using a single non-null columns.
+        /// </summary>
+        [Test]
+        public void FindIndex()
+        {
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+            //Add just the data we want
+            DBRow row = new DBRow();
+            row["email"] = "chris@ifntech.com";
+
+            //Now find the id
+            row.FindIndex(db);
+
+            Assert.AreEqual(1313, row[db.PrimaryKey]);
+        }
+        /// <summary>
+        /// Test if it can find the index using a two non-null columns
+        /// </summary>
+        [Test]
+        public void FindIndexTwoColumns()
+        {
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+            //Add just the data we want
+            DBRow row = new DBRow();
+            row["email"] = "chris@ifntech.com";
+            row["first_name"] = "Chris";
+
+            //Now find the id
+            row.FindIndex(db);
+
+            Assert.AreEqual(1313, row[db.PrimaryKey]);
+        }
+        /// <summary>
+        /// Tests if it can fill out the row using only the PrimayKey.
+        /// </summary>
+        [Test]
+        public void FillFromIndex()
+        {
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+            //Add just the data we want
+            DBRow row = new DBRow();
+            row[db.PrimaryKey] = 1313;
+
+            //Fill from the ID
+            row.FillFromIndex(db);
+
+            Assert.AreEqual("chris@ifntech.com", row["email"]);
+        }
+
+        /// <summary>
+        /// Test that FillFromIndex will overwrite any data we already have in the colums
+        /// </summary>
+        [Test]
+        public void FillFromIndexOverwritesColumns()
+        {
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+            //Add just the data we want
+            DBRow row = new DBRow();
+            row[db.PrimaryKey] = 1313;
+            row["email"] = "Bob@joeyjoe.com";   //It should overwrite this value with the one from the database.
+
+            //Fill from the ID
+            row.FillFromIndex(db);
+
+            Assert.AreEqual("Chris", row["first_name"]);
+            Assert.AreEqual("Richards", row["last_name"]);
+            //Check that our email was replaced with the one in the database.
+            Assert.AreEqual("chris@ifntech.com", row["email"]);
+        }
+        /// <summary>
+        /// Test that we can keep the old values when calling fill from index.
+        /// </summary>
+        [Test]
+        public void FillFromIndexKeepsNonNullValues()
+        {
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+            //Add just the data we want
+            DBRow row = new DBRow();
+            row[db.PrimaryKey] = 1313;
+            row["email"] = "Bob@joeyjoe.com";
+
+            //Fill from the ID
+            row.FillFromIndex(db, true);
+
+            Assert.AreEqual("Chris", row["first_name"]);
+            Assert.AreEqual("Richards", row["last_name"]);
+            //Check that it kept out value.
+            Assert.AreEqual("Bob@joeyjoe.com", row["email"]);
+        }
+
+
+    }
+
+    public class TestWhere
+    {
+        [SetUp]
+        public void Setup()
+        {
+            //Create the test data.
+            DBObject db = new DBObject(Utility.connMy, "users", "external_id"); //Lie about the primary key so we can insert it.
+
+            DBRow dan = new DBRow();
+            dan["id"] = 2;
+            dan["first_name"] = "Dan";
+            dan["middle_initial"] = "A";
+            dan["last_name"] = "Rese";
+            dan["email"] = "dan@ifntech.com";
+            dan.Insert(db);
+
+            DBRow chris = new DBRow();
+            chris["id"] = 1313;
+            chris["first_name"] = "Chris";
+            chris["middle_initial"] = "A";
+            chris["last_name"] = "Richards";
+            chris["email"] = "chris@ifntech.com";
+            chris.Insert(db);
+
+            DBRow ross = new DBRow();
+            ross["id"] = 1315;
+            ross["first_name"] = "Ross";
+            ross["middle_initial"] = "A";
+            ross["last_name"] = "Richards";
+            ross["email"] = "rweaver@ifntech.com";
+            ross.Insert(db);
+
+            DBRow rick = new DBRow();
+            rick["id"] = 1327;
+            rick["first_name"] = "Rick";
+            rick["middle_initial"] = "R";
+            rick["last_name"] = "Frazer";
+            rick["email"] = "rfrazer@ifntech.com";
+            rick.Insert(db);
+
+        }
+        [TearDown]
+        public void Teardown()
+        {
+            //Delete all of the records
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+            db.Where("true=true");
+
+            foreach (DBRow row in db.Rows)
+            {
+                row.Delete(db);
+            }
+        }
+
+        /// <summary>
+        /// We should be able to use a row as our where clause
+        /// </summary>
+        [Test]
+        public void FindByRow()
+        {
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+            
+            //Create a row with the propertys we want to find
+            DBRow where = new DBRow();
+            where["middle_initial"] = "A";
+            //Now find everyone with an A for a middle name.
+            db.Where(where);
+
+            //Should find 3 rows.
+            Assert.AreEqual(3, db.Rows.Count);
+            //Verify they are the three we expect
+            int found = 0;
+            foreach (DBRow row in db.Rows)
+            {
+                if (2 == (int)row["id"])
+                {
+                    Assert.AreEqual(row["first_name"], "Dan");
+                    Assert.AreEqual(row["middle_initial"], "A");
+                    Assert.AreEqual(row["last_name"], "Rese");
+                    Assert.AreEqual(row["email"], "dan@ifntech.com");
+                    found++;
+                }
+                else if (1313 == (int)row["id"])
+                {
+                    Assert.AreEqual(row["first_name"], "Chris");
+                    Assert.AreEqual(row["middle_initial"], "A");
+                    Assert.AreEqual(row["last_name"], "Richards");
+                    Assert.AreEqual(row["email"], "chris@ifntech.com");
+                    found++;
+                }
+                else if (1315 == (int)row["id"])
+                {
+                    Assert.AreEqual(row["first_name"], "Ross");
+                    Assert.AreEqual(row["middle_initial"], "A");
+                    Assert.AreEqual(row["last_name"], "Richards");
+                    Assert.AreEqual(row["email"], "rweaver@ifntech.com");
+                    found++;
+                }
+            }
+            Assert.AreEqual(3, found);
+        }
+        /// <summary>
+        /// Same as FindByRow, but uses two columns instead of one.
+        /// </summary>
+        [Test]
+        public void FindByTwoColumnsInRow()
+        {
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+
+            //Create a row with the propertys we want to find
+            DBRow where = new DBRow();
+            where["middle_initial"] = "A";
+            where["last_name"] = "Richards";
+            //Now find everyone with an A for a middle name.
+            db.Where(where);
+
+            //Should find 3 rows.
+            Assert.AreEqual(2, db.Rows.Count);
+            //Verify they are the three we expect
+            int found = 0;
+            foreach (DBRow row in db.Rows)
+            {
+                if (1313 == (int)row["id"])
+                {
+                    Assert.AreEqual(row["first_name"], "Chris");
+                    Assert.AreEqual(row["middle_initial"], "A");
+                    Assert.AreEqual(row["last_name"], "Richards");
+                    Assert.AreEqual(row["email"], "chris@ifntech.com");
+                    found++;
+                }
+                else if (1315 == (int)row["id"])
+                {
+                    Assert.AreEqual(row["first_name"], "Ross");
+                    Assert.AreEqual(row["middle_initial"], "A");
+                    Assert.AreEqual(row["last_name"], "Richards");
+                    Assert.AreEqual(row["email"], "rweaver@ifntech.com");
+                    found++;
+                }
+            }
+            Assert.AreEqual(2, found);
+        }
+        /// <summary>
+        /// We should be able to match partial strings
+        /// </summary>
+        [Test]
+        public void FindByPartialString()
+        {
+            DBObject db = new DBObject(Utility.connMy, "users", "id");
+
+            //Create a row with the propertys we want to find
+            DBRow where = new DBRow();
+            where["email"] = "%@ifntech.com";
+            //Now find everyone with an A for a middle name.
+            db.Where(where);
+
+            //Should find 3 rows.
+            Assert.AreEqual(4, db.Rows.Count);
+            //Verify they are the three we expect
+            int found = 0;
+            foreach (DBRow row in db.Rows)
+            {
+                if (2 == (int)row["id"])
+                {
+                    Assert.AreEqual(row["first_name"], "Dan");
+                    Assert.AreEqual(row["middle_initial"], "A");
+                    Assert.AreEqual(row["last_name"], "Rese");
+                    Assert.AreEqual(row["email"], "dan@ifntech.com");
+                    found++;
+                }
+                else if (1313 == (int)row["id"])
+                {
+                    Assert.AreEqual(row["first_name"], "Chris");
+                    Assert.AreEqual(row["middle_initial"], "A");
+                    Assert.AreEqual(row["last_name"], "Richards");
+                    Assert.AreEqual(row["email"], "chris@ifntech.com");
+                    found++;
+                }
+                else if (1315 == (int)row["id"])
+                {
+                    Assert.AreEqual(row["first_name"], "Ross");
+                    Assert.AreEqual(row["middle_initial"], "A");
+                    Assert.AreEqual(row["last_name"], "Richards");
+                    Assert.AreEqual(row["email"], "rweaver@ifntech.com");
+                    found++;
+                }
+                else if (1327 == (int)row["id"])
+                {
+                    Assert.AreEqual(row["first_name"], "Rick");
+                    Assert.AreEqual(row["middle_initial"], "R");
+                    Assert.AreEqual(row["last_name"], "Frazer");
+                    Assert.AreEqual(row["email"], "rfrazer@ifntech.com");
+                    found++;
+                }
+            }
+            Assert.AreEqual(4, found);
         }
     }
 }
