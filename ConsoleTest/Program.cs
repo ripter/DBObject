@@ -7,7 +7,7 @@ namespace ConsoleTest
 {
     public class Utility
     {
-        static public string connMy = "Server=173.165.104.214;User Id=web;Password=0192dog;Persist Security Info=True;Database=nunit";
+        static public string connMy = "Server=192.168.1.1;User Id=user;Password=password;Persist Security Info=True;Database=nunit";
     }
 
     class Program
@@ -21,7 +21,7 @@ namespace ConsoleTest
 
             //db.FillFromSelect("SELECT * FROM users WHERE middle_initial=@0 ", "A");
             
-            //Create a row with the propertys we want to find
+            //Create a row with the properties we want to find
             DBRow where = new DBRow();
             where["middle_initial"] = "A";
             //Now find everyone with an A for a middle name.
